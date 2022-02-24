@@ -62,7 +62,8 @@ public class CustomerController {
         return Flux.just(1,2,3,4,5).delayElements(Duration.ofSeconds(1));
     }
 
-    @GetMapping(value = "/fluxsse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    // APPLICATION_STREAM_JSON_VALUE, APPLICATION_NDJSON_VALUE, TEXT_EVENT_STREAM_VALUE
+    @GetMapping(value = "/fluxsse", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<Integer> callFluxTestSSE() {
         return Flux.just(1,2,3,4,5).delayElements(Duration.ofSeconds(1));
     }
