@@ -1,5 +1,7 @@
 package com.example.webflux_postgre.controller;
 
+import java.time.Duration;
+
 import com.example.webflux_postgre.domain.Customer;
 import com.example.webflux_postgre.domain.RandomNum;
 import com.example.webflux_postgre.repository.CustomerRepository;
@@ -53,6 +55,16 @@ public class CustomerController {
     public Flux<RandomNum> callRandomNumSSE() {
         log.info("========== Call Random Number List SSE ==========");
         return randomNumRepository.findAll();
+    }
+
+    @GetMapping(value = "/flux")
+    public Flux<Integer> callFluxTest() {
+        return Flux.just(1,2,3,4,5).delayElements(Duration.ofSeconds(1));
+    }
+
+    @GetMapping(value = "/fluxsse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Integer> callFluxTestSSE() {
+        return Flux.just(1,2,3,4,5).delayElements(Duration.ofSeconds(1));
     }
 
 }
