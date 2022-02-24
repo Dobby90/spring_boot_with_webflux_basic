@@ -3,12 +3,14 @@ package com.example.webflux_postgre.domain;
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class Customer {
     
     @Id
     private Long id;
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 }
